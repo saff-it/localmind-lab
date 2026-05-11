@@ -3,102 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO -->
     <title>LocalMind Lab — Web Agency Milano | SEO Locale, Siti Web, Automazioni</title>
     <meta name="description" content="LocalMind Lab è una web agency a Milano specializzata in SEO locale, siti web moderni con React e Tailwind, e automazioni con n8n per professionisti e piccole attività." />
     <meta name="keywords" content="web agency Milano, SEO locale Milano, siti web React, automazioni n8n, digital marketing Milano" />
     <meta name="author" content="LocalMind Lab" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://localmindlab.it" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://localmindlab.it" />
     <meta property="og:title" content="LocalMind Lab — Web Agency Milano" />
     <meta property="og:description" content="SEO locale, siti web moderni e automazioni intelligenti per il tuo business a Milano." />
-    <meta property="og:image" content="https://localmindlab.it/og-image.jpg" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="LocalMind Lab — Web Agency Milano" />
     <meta name="twitter:description" content="SEO locale, siti web moderni e automazioni intelligenti per il tuo business a Milano." />
-
-    <!-- Favicon placeholder -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Google Fonts: Syne (display) + DM Sans (body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
-      rel="stylesheet"
-    />
-
-    <style>
-      *, *::before, *::after { box-sizing: border-box; }
-
-      :root {
-        --lm-bg:      #0c0c0d;
-        --lm-surface: #161617;
-        --lm-card:    #1e1e20;
-        --lm-accent:  #6B4EFF;
-        --lm-accent-h:#8B72FF;
-        --lm-text:    #f0f0f2;
-        --lm-muted:   #8c8c96;
-        --lm-border:  rgba(255,255,255,0.08);
-      }
-
-      html { scroll-behavior: smooth; }
-
-      body {
-        margin: 0;
-        background-color: var(--lm-bg);
-        color: var(--lm-text);
-        font-family: "DM Sans", sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      /* Grain overlay via pseudo-element on root */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        pointer-events: none;
-        opacity: 0.025;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        background-size: 200px 200px;
-      }
-
-      /* Heading font */
-      h1, h2, h3, h4, h5, h6 {
-        font-family: "Syne", sans-serif;
-      }
-
-      /* Accent color utility for inline use */
-      .text-accent { color: var(--lm-accent); }
-      .bg-accent   { background-color: var(--lm-accent); }
-      .border-accent { border-color: var(--lm-accent); }
-
-      /* Glow dot for decorative use */
-      .glow-dot {
-        width: 600px;
-        height: 600px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(107,78,255,0.18) 0%, transparent 70%);
-        pointer-events: none;
-        position: absolute;
-        z-index: 0;
-      }
-
-      /* Override Relume button primary */
-      [class*="bg-background-alternative"] {
-        background-color: var(--lm-accent) !important;
-        color: #fff !important;
-      }
-    </style>
   </head>
   <body>
     <div id="root"></div>
