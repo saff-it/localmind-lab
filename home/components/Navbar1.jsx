@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
+import { useMediaQuery } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { RxChevronDown } from "react-icons/rx";
@@ -10,91 +10,82 @@ const useRelume = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width: 991px)");
   const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
-  const openOnMobileDropdownMenu = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
-  const openOnDesktopDropdownMenu = () => {
-    !isMobile && setIsDropdownOpen(true);
-  };
-  const closeOnDesktopDropdownMenu = () => {
-    !isMobile && setIsDropdownOpen(false);
-  };
+  const openOnMobileDropdownMenu = () => setIsDropdownOpen((prev) => !prev);
+  const openOnDesktopDropdownMenu = () => { !isMobile && setIsDropdownOpen(true); };
+  const closeOnDesktopDropdownMenu = () => { !isMobile && setIsDropdownOpen(false); };
   const animateMobileMenu = isMobileMenuOpen ? "open" : "close";
-  const animateMobileMenuButtonSpan = isMobileMenuOpen
-    ? ["open", "rotatePhase"]
-    : "closed";
+  const animateMobileMenuButtonSpan = isMobileMenuOpen ? ["open", "rotatePhase"] : "closed";
   const animateDropdownMenu = isDropdownOpen ? "open" : "close";
   const animateDropdownMenuIcon = isDropdownOpen ? "rotated" : "initial";
   return {
-    toggleMobileMenu,
-    openOnDesktopDropdownMenu,
-    closeOnDesktopDropdownMenu,
-    openOnMobileDropdownMenu,
-    animateMobileMenu,
-    animateMobileMenuButtonSpan,
-    animateDropdownMenu,
-    animateDropdownMenuIcon,
+    toggleMobileMenu, openOnDesktopDropdownMenu, closeOnDesktopDropdownMenu,
+    openOnMobileDropdownMenu, animateMobileMenu, animateMobileMenuButtonSpan,
+    animateDropdownMenu, animateDropdownMenuIcon,
   };
 };
+
+const Logo = () => (
+  <a href="/" className="flex items-center gap-2 group">
+    <span
+      className="flex h-8 w-8 items-center justify-center rounded-lg text-white text-sm font-bold"
+      style={{ background: "var(--lm-accent)", fontFamily: "Syne, sans-serif" }}
+    >
+      LM
+    </span>
+    <span
+      className="text-lg font-bold tracking-tight text-white"
+      style={{ fontFamily: "Syne, sans-serif" }}
+    >
+      localmind<span style={{ color: "var(--lm-accent)" }}>lab</span>
+    </span>
+  </a>
+);
+
+const navLinkClass =
+  "block py-3 text-md text-text-secondary transition-colors duration-200 hover:text-white first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2";
 
 export function Navbar1() {
   const useActive = useRelume();
   return (
     <section
-      id="relume"
+      id="navbar"
       className="flex w-full items-center border-b border-border-primary bg-background-primary lg:min-h-18 lg:px-[5%]"
+      style={{ backdropFilter: "blur(12px)", position: "sticky", top: 0, zIndex: 50 }}
     >
       <div className="size-full lg:flex lg:items-center lg:justify-between">
         <div className="flex min-h-16 items-center justify-between px-[5%] md:min-h-18 lg:min-h-full lg:px-0">
-          <a href="#">
-            <img
-              src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
-              alt="Logo image"
-            />
-          </a>
+          <Logo />
           <button
             className="-mr-2 flex size-12 flex-col items-center justify-center lg:hidden"
             onClick={useActive.toggleMobileMenu}
+            aria-label="Toggle menu"
           >
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenuButtonSpan}
-              variants={{
-                open: { translateY: 8, transition: { delay: 0.1 } },
-                rotatePhase: { rotate: -45, transition: { delay: 0.2 } },
-                closed: {
-                  translateY: 0,
-                  rotate: 0,
-                  transition: { duration: 0.2 },
-                },
-              }}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenu}
-              variants={{
-                open: { width: 0, transition: { duration: 0.1 } },
-                closed: {
-                  width: "1.5rem",
-                  transition: { delay: 0.3, duration: 0.2 },
-                },
-              }}
-            />
-            <motion.span
-              className="my-[3px] h-0.5 w-6 bg-black"
-              animate={useActive.animateMobileMenuButtonSpan}
-              variants={{
-                open: { translateY: -8, transition: { delay: 0.1 } },
-                rotatePhase: { rotate: 45, transition: { delay: 0.2 } },
-                closed: {
-                  translateY: 0,
-                  rotate: 0,
-                  transition: { duration: 0.2 },
-                },
-              }}
-            />
+            {["open", "close", "open"].map((phase, i) => (
+              <motion.span
+                key={i}
+                className="my-[3px] h-0.5 w-6 bg-white"
+                animate={
+                  i === 1
+                    ? useActive.animateMobileMenu
+                    : useActive.animateMobileMenuButtonSpan
+                }
+                variants={
+                  i === 1
+                    ? {
+                        open: { width: 0, transition: { duration: 0.1 } },
+                        close: { width: "1.5rem", transition: { delay: 0.3, duration: 0.2 } },
+                      }
+                    : {
+                        open: { translateY: i === 0 ? 8 : -8, transition: { delay: 0.1 } },
+                        rotatePhase: { rotate: i === 0 ? -45 : 45, transition: { delay: 0.2 } },
+                        closed: { translateY: 0, rotate: 0, transition: { duration: 0.2 } },
+                      }
+                }
+              />
+            ))}
           </button>
         </div>
+
         <motion.div
           variants={{
             open: { height: "var(--height-open, 100dvh)" },
@@ -106,30 +97,17 @@ export function Navbar1() {
           transition={{ duration: 0.4 }}
           className="overflow-hidden px-[5%] lg:flex lg:items-center lg:px-0 lg:[--height-closed:auto] lg:[--height-open:auto]"
         >
-          <a
-            href="#"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
-          >
-            Servizi
-          </a>
-          <a
-            href="#"
-            className="block py-3 text-md first:pt-7 lg:px-4 lg:py-2 lg:text-base first:lg:pt-2"
-          >
-            Portfolio
-          </a>
+          <a href="#servizi" className={navLinkClass}>Servizi</a>
+          <a href="#come-lavoriamo" className={navLinkClass}>Come lavoriamo</a>
+          <a href="#testimonials" className={navLinkClass}>Clienti</a>
+
+          {/* Dropdown Soluzioni */}
           <div
             onMouseEnter={useActive.openOnDesktopDropdownMenu}
             onMouseLeave={useActive.closeOnDesktopDropdownMenu}
           >
             <button
-              className="flex w-full items-center justify-between gap-2 py-3 text-left text-md lg:flex-none lg:justify-start lg:px-4 lg:py-2 lg:text-base"
+              className="flex w-full items-center justify-between gap-2 py-3 text-left text-md text-text-secondary transition-colors hover:text-white lg:flex-none lg:justify-start lg:px-4 lg:py-2 lg:text-base"
               onClick={useActive.openOnMobileDropdownMenu}
             >
               <span>Soluzioni</span>
@@ -144,58 +122,37 @@ export function Navbar1() {
             <AnimatePresence>
               <motion.nav
                 variants={{
-                  open: {
-                    visibility: "visible",
-                    opacity: "var(--opacity-open, 100%)",
-                    display: "block",
-                    y: 0,
-                  },
-                  close: {
-                    visibility: "hidden",
-                    opacity: "var(--opacity-close, 0)",
-                    display: "none",
-                    y: "var(--y-close, 0%)",
-                  },
+                  open: { visibility: "visible", opacity: "var(--opacity-open, 100%)", display: "block", y: 0 },
+                  close: { visibility: "hidden", opacity: "var(--opacity-close, 0)", display: "none", y: "var(--y-close, 0%)" },
                 }}
                 animate={useActive.animateDropdownMenu}
                 initial="close"
                 exit="close"
                 transition={{ duration: 0.2 }}
-                className="bg-background-primary lg:absolute lg:z-50 lg:border lg:border-border-primary lg:p-2 lg:[--y-close:25%]"
+                className="lg:absolute lg:z-50 lg:border lg:border-border-primary lg:p-2 lg:[--y-close:25%]"
+                style={{ background: "var(--lm-surface)" }}
               >
-                <a
-                  href="#"
-                  className="block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base"
-                >
-                  SEO locale
-                </a>
-                <a
-                  href="#"
-                  className="block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base"
-                >
-                  Siti web
-                </a>
-                <a
-                  href="#"
-                  className="block py-3 pl-[5%] text-md lg:px-4 lg:py-2 lg:text-base"
-                >
-                  Automazioni
-                </a>
+                <a href="#seo" className="block py-3 pl-[5%] text-md text-text-secondary transition-colors hover:text-white lg:px-4 lg:py-2 lg:text-base">SEO locale</a>
+                <a href="#siti-web" className="block py-3 pl-[5%] text-md text-text-secondary transition-colors hover:text-white lg:px-4 lg:py-2 lg:text-base">Siti web</a>
+                <a href="#automazioni" className="block py-3 pl-[5%] text-md text-text-secondary transition-colors hover:text-white lg:px-4 lg:py-2 lg:text-base">Automazioni</a>
               </motion.nav>
             </AnimatePresence>
           </div>
-          <div className="mt-6 flex flex-col items-center gap-4 lg:ml-4 lg:mt-0 lg:flex-row">
-            <Button
-              title="Contatti"
-              variant="secondary"
-              size="sm"
-              className="w-full"
+
+          <div className="mt-6 flex flex-col items-center gap-3 lg:ml-6 lg:mt-0 lg:flex-row">
+            <a
+              href="#contatti"
+              className="w-full rounded-lg border border-border-secondary px-5 py-2 text-center text-sm font-medium text-white transition-colors hover:border-white lg:w-auto"
             >
               Contatti
-            </Button>
-            <Button title="Inizia" size="sm" className="w-full">
-              Inizia
-            </Button>
+            </a>
+            <a
+              href="#contatti"
+              className="w-full rounded-lg px-5 py-2 text-center text-sm font-semibold text-white transition-all hover:opacity-90 lg:w-auto"
+              style={{ background: "var(--lm-accent)" }}
+            >
+              Inizia ora →
+            </a>
           </div>
         </motion.div>
       </div>

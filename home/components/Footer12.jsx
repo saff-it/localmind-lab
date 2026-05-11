@@ -1,127 +1,111 @@
 "use client";
 
-import { Button } from "@relume_io/relume-ui";
 import React from "react";
 import {
-  BiLogoFacebookCircle,
   BiLogoInstagram,
   BiLogoLinkedinSquare,
-  BiLogoYoutube,
 } from "react-icons/bi";
-import { FaXTwitter } from "react-icons/fa6";
+
+const Logo = () => (
+  <a href="/" className="inline-flex items-center gap-2">
+    <span
+      className="flex h-8 w-8 items-center justify-center rounded-lg text-white text-sm font-bold"
+      style={{ background: "var(--lm-accent)", fontFamily: "Syne, sans-serif" }}
+    >
+      LM
+    </span>
+    <span
+      className="text-lg font-bold tracking-tight text-white"
+      style={{ fontFamily: "Syne, sans-serif" }}
+    >
+      localmind<span style={{ color: "var(--lm-accent)" }}>lab</span>
+    </span>
+  </a>
+);
+
+const navCols = [
+  {
+    links: [
+      { label: "SEO locale", href: "#seo" },
+      { label: "Siti web", href: "#siti-web" },
+      { label: "Automazioni", href: "#automazioni" },
+      { label: "Chi siamo", href: "#" },
+      { label: "Blog", href: "#" },
+    ],
+  },
+  {
+    links: [
+      { label: "Servizi", href: "#servizi" },
+      { label: "Clienti", href: "#testimonials" },
+      { label: "Contatti", href: "#contatti" },
+      { label: "Privacy Policy", href: "#" },
+      { label: "Termini d'uso", href: "#" },
+    ],
+  },
+];
 
 export function Footer12() {
   return (
-    <footer id="relume" className="px-[5%] py-12 md:py-18 lg:py-20">
+    <footer
+      id="footer"
+      className="px-[5%] py-12 md:py-18 lg:py-20"
+      style={{ background: "var(--lm-bg)", borderTop: "1px solid var(--lm-border)" }}
+    >
       <div className="container">
-        <div className="border-b border-border-primary">
-          <div className="mb-12 grid grid-cols-1 gap-x-[8vw] gap-y-12 md:mb-18 md:gap-y-16 lg:mb-20 lg:grid-cols-[1fr_0.5fr] lg:gap-y-20">
-            <div className="rb-6 max-w-md">
-              <h1 className="mb-5 text-6xl font-bold md:mb-6 md:text-9xl lg:text-10xl">
-                Costruiamo il tuo futuro online
-              </h1>
-              <p>
-                Moderna web agency a Milano per professionisti e piccole
-                attività che vogliono crescere.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-4 md:mt-8">
-                <Button title="Contattaci">Contattaci</Button>
-                <Button title="Scopri" variant="secondary">
-                  Scopri
-                </Button>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 items-start gap-x-6 gap-y-5 sm:grid-cols-2 sm:gap-x-6 md:gap-x-8 md:gap-y-4">
-              <ul>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">SEO locale</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Siti web</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Google Business</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Automazioni</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Chi siamo</a>
-                </li>
-              </ul>
-              <ul>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Servizi</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Testimonianze</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Blog</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Privacy</a>
-                </li>
-                <li className="py-2 text-sm font-semibold">
-                  <a href="#">Termini</a>
-                </li>
-              </ul>
+        <div className="mb-12 grid grid-cols-1 gap-x-[8vw] gap-y-12 md:mb-18 lg:mb-20 lg:grid-cols-[1fr_0.5fr]">
+          <div className="max-w-md">
+            <Logo />
+            <p className="mt-5 text-text-secondary">
+              Web agency a Milano per professionisti e piccole attività che
+              vogliono crescere online con SEO, siti moderni e automazioni.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 md:mt-8">
+              <a
+                href="#contatti"
+                className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all hover:opacity-90"
+                style={{ background: "var(--lm-accent)" }}
+              >
+                Inizia ora
+              </a>
+              <a
+                href="mailto:info@localmindlab.it"
+                className="rounded-xl border border-border-primary px-5 py-2.5 text-sm font-medium text-white transition-colors hover:border-white"
+              >
+                info@localmindlab.it
+              </a>
             </div>
           </div>
-          <div className="rb-6 col-span-1 flex flex-col items-start justify-between pb-6 sm:flex-row sm:items-center md:pb-8 lg:col-span-2">
-            <a href="#">
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/logo-image.svg"
-                alt="Logo image"
-                className="mb-6 inline-block sm:mb-0"
-              />
-            </a>
-            <div className="ml-3 flex">
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-small.svg"
-                alt="Relume placeholder image"
-                className="relative -ml-3 size-12 min-h-12 min-w-12 rounded-full border-2 border-white object-cover"
-              />
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-small.svg"
-                alt="Relume placeholder image"
-                className="relative -ml-3 size-12 min-h-12 min-w-12 rounded-full border-2 border-white object-cover"
-              />
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-small.svg"
-                alt="Relume placeholder image"
-                className="relative -ml-3 size-12 min-h-12 min-w-12 rounded-full border-2 border-white object-cover"
-              />
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-small.svg"
-                alt="Relume placeholder image"
-                className="relative -ml-3 size-12 min-h-12 min-w-12 rounded-full border-2 border-white object-cover"
-              />
-              <img
-                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image-small.svg"
-                alt="Relume placeholder image"
-                className="relative -ml-3 size-12 min-h-12 min-w-12 rounded-full border-2 border-white object-cover"
-              />
-            </div>
+
+          <div className="grid grid-cols-2 items-start gap-x-6 gap-y-4">
+            {navCols.map((col, ci) => (
+              <ul key={ci}>
+                {col.links.map((link) => (
+                  <li key={link.label} className="py-2">
+                    <a
+                      href={link.href}
+                      className="text-sm text-text-secondary transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ))}
           </div>
         </div>
-        <div className="flex flex-col-reverse items-start justify-between pb-4 pt-6 text-sm md:flex-row md:items-center md:pb-0 md:pt-8">
-          <p>© 2024 Relume. All rights reserved.</p>
-          <div className="grid grid-flow-col grid-cols-[max-content] items-start justify-start gap-x-3">
-            <a href="#">
-              <BiLogoFacebookCircle className="size-6" />
+
+        <div
+          className="flex flex-col items-start justify-between gap-4 border-t border-border-primary pt-6 sm:flex-row sm:items-center md:pt-8"
+        >
+          <p className="text-sm text-text-secondary">
+            © {new Date().getFullYear()} LocalMind Lab · Milano, Italia · Tutti i diritti riservati.
+          </p>
+          <div className="flex items-center gap-3">
+            <a href="#" aria-label="Instagram">
+              <BiLogoInstagram className="size-5 text-text-secondary transition-colors hover:text-white" />
             </a>
-            <a href="#">
-              <BiLogoInstagram className="size-6" />
-            </a>
-            <a href="#">
-              <FaXTwitter className="size-6 p-0.5" />
-            </a>
-            <a href="#">
-              <BiLogoLinkedinSquare className="size-6" />
-            </a>
-            <a href="#">
-              <BiLogoYoutube className="size-6" />
+            <a href="#" aria-label="LinkedIn">
+              <BiLogoLinkedinSquare className="size-5 text-text-secondary transition-colors hover:text-white" />
             </a>
           </div>
         </div>

@@ -1,7 +1,6 @@
+import React from "react";
+import Page from "../home/index";
+
 export default function App() {
-  return (
-    <div>
-      <h1>LocalMind Lab</h1>
-    </div>
-  );
+  return <Page />;
 }
